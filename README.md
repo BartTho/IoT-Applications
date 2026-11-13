@@ -27,8 +27,15 @@ In this menu navigate with the up and down arrows then space to select. Enter wi
 - InfluxDB 
 - Mosquitto 
 - Node-RED 
-- Portainer-CE 
-  
+- Portainer-CE
+
+```sh
+cd ~/IOTstack
+./iotstack-menu.sh install mosquitto influxdb nodered grafana
+./iotstack-menu.sh build
+docker compose up -d
+```
+
 You can then start all these containers with the “Start Stack” command. The first time you do this it might take some time as it downloads everything. Once complete you can check everything is running with the command:
 ```
 docker-compose ps
