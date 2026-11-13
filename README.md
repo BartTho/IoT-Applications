@@ -5,17 +5,22 @@ This is the written guide corresponding to our video tutorial showing you how to
 https://www.youtube.com/watch?v=_DO2wHI6JWQ
 
 We are using a Raspberry Pi 4 loaded with Raspbian OS 64-bit lite running in headless mode connected via SSH. To start off with we make sure everything is updated:
-
+```
 sudo apt update
 sudo apt upgrade
+```
 Then we download IoTStack using the following command and reboot once the download is complete:
-
+```sh
 curl -fsSL https://raw.githubusercontent.com/SensorsIot/IOTstack/master/install.sh | bash
+```
+```sh
 sudo shutdown -r now
+```
 Once the Pi is back online we can SSH back in and open the menu. First navigate into the IoTStack folder then run the menu script:
-
+```
 cd IOTstack/
 ./menu.sh
+```
 In this menu navigate with the up and down arrows then space to select. Enter will build the docker-compose.yml file. Ensure you select the following components:
 
 Grafana
@@ -24,28 +29,32 @@ Mosquitto
 Node-RED
 Portainer-CE
 You can then start all these containers with the “Start Stack” command. The first time you do this it might take some time as it downloads everything. Once complete you can check everything is running with the command:
-
+```
 docker-compose ps
+```
 To create an InfluxDB database we need to enter the influx docker container then add the database as follows:
-
+```
 docker exec -it influxdb influx
 CREATE DATABASE sensor_data
 quit
+```
 Now you can navigate to the web interfaces for the applications you need to configure as per the video. The Node-RED JSON interpreter we used was this:
-
+```json
 {
     "temperature": msg.payload.t,
     "pressure": msg.payload.p,
     "humidity": msg.payload.h,
     "gas": msg.payload.g
 }
+```
 To check that data is being written to the database you can use the following sequence of commands:
-
+```
 docker exec -it influxdb influx
 USE sensor_data
 show measurements
 select * from sensor_data
 quit
+```
 Source Code for the Sensor Node
 This code is run on an Arduino Uno with a drop in replacement DIP package in the form of the Jolly module. A BME680 temperature, pressure, humidity and gas resistance sensor attached over the I2C interface.
 
