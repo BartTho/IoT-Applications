@@ -23,11 +23,12 @@ cd IOTstack/
 ```
 In this menu navigate with the up and down arrows then space to select. Enter will build the docker-compose.yml file. Ensure you select the following components:
 
-Grafana
-InfluxDB
-Mosquitto
-Node-RED
-Portainer-CE
+- Grafana  
+- InfluxDB 
+- Mosquitto 
+- Node-RED 
+- Portainer-CE 
+  
 You can then start all these containers with the “Start Stack” command. The first time you do this it might take some time as it downloads everything. Once complete you can check everything is running with the command:
 ```
 docker-compose ps
