@@ -19,7 +19,7 @@ sudo shutdown -r now
 Once the Pi is back online we can SSH back in and open the menu. First navigate into the IoTStack folder then run the menu script:
 ```
 cd IOTstack/
-./menu.sh
+./iotstack-menu.sh
 ```
 In this menu navigate with the up and down arrows then space to select. Enter will build the docker-compose.yml file. Ensure you select the following components:
 
